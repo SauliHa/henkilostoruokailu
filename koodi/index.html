@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" href="css/ionic.min.css">
+        <link rel="stylesheet" href="css/tyylit.css">
+
+        <script src="js/ionic.bundle.min.js"></script>
+        <script src="js/ng-cordova.min.js"></script>
+        <script src="cordova.js"></script>
+        <script  src="js/app.js"></script>
+        <title>Hello World</title>
+    </head>
+    <body ng-controller="kirjanpitoctrl" ng-app="kirjanpito">
+ 
+    <ion-tabs class="ylapalkki">
+        <ion-tab title="Etusivu">
+            <ion-header-bar class="ylapalkki">
+                <h2 class="otsikko">Henkilöstöruokailu</h2>
+            </ion-header-bar>
+            <ion-content class="padding sisalto">
+             <div id="kayttajat">
+                <div ng-repeat="kayttaja in kayttajat" class="kayttaja">
+                    <button class="nappi1" ng-click="avaaOstosIkkuna(kayttaja.id, kayttaja.nimi)">{{kayttaja.nimi}}</button>
+                </div>
+             </div>
+             <div id="ostokset">
+                    <h2>Ostokset</h2>
+                    <p>Valitse käyttäjä:<p>
+                    <button class="nappi1" ng-click="haeOstokset(valittukayttaja.id, kuukausi.id, vuosi)">Hae</button><br/>
+                    <select ng-model="valittukayttaja" ng-options="kayttaja as kayttaja.nimi for kayttaja in kayttajat"></select><br/>
+                    <select ng-model="kuukausi" ng-options=" kuukausi as kuukausi.kuukausi for kuukausi in kuukaudet"></select><br/>
+                    <select ng-model="vuosi" ng-options="vuosi as vuosi for vuosi in vuodet"></select><br/>
+
+                    <div ng-show="kuukausiostot > 0"><p><strong>Kuukausiostojen summa:</strong> {{kuukausiostot}} €</p></div>
+                    <br/>
+                    <ul>
+                        <li ng-repeat="ostos in ostokset">
+                            <strong>ID:</strong> {{ostos.id}} 
+                            <strong>Käyttäja:</strong> {{ostos.kayttaja}}
+                            <strong>Ruoka:</strong> {{ostos.ruoka}} 
+                            <strong>Hinta:</strong>{{ostos.hinta}}€
+                            <strong>Pvm:</strong> {{ostos.pvm}} 
+                           <button class="nappi2" ng-click="poistoVarmistus(ostos.id, 3)">Poista</button>
+                           <br/>
+                        </li>
+                    </ul>  
+                    <button class="nappi1" ng-show="kirjauduttu && kuukausiostot > 0" ng-click="kirjoita(valittukayttaja.nimi, kuukausi.kuukausi, vuosi)">Luo yhteenveto</button>
+                    <button class="nappi1" ng-show="kuukausiostot > 0" ng-click="piilotaOstot()">Piilota kuukausiostot</button>
+             </div>
+            </ion-content>
+        </ion-tab>
+        <ion-tab title="Ylläpito">
+            <ion-header-bar class="ylapalkki">
+                <h1 class="otsikko">Henkilöstöruokailu</h1>
+            </ion-header-bar>
+            <ion-content class="padding sisalto">
+             <div ng-show="kirjauduttu">
+                 <h2>Käyttäjät</h2> 
+                 <p>Käyttäjän nimi:</p> <input type="text" ng-model="nimi"/><br/>
+                <button class="nappi1" ng-click="lisaaKayttaja(nimi)">Lisää käyttäjä</button> 
+
+                <ul>
+                    <li ng-repeat="kayttaja in kayttajat">
+                        <strong>ID:</strong> {{kayttaja.id}} <strong>Nimi:</strong> {{kayttaja.nimi}} <button class="nappi2" ng-click="poistoVarmistus(kayttaja.id, 1)">Poista</button>
+                        <br/>
+                    </li>
+                </ul> 
+
+                <h2>Ruoat</h2>
+                <p>Annoksen nimi:</p> <input type="text" ng-model="ruoka">
+                <p>Hinta:</p> <input type="text" ng-model="hinta">
+                <button class="nappi1" ng-click="lisaaRuoka(ruoka, hinta)">Lisää ruokavaihtoehto</button><br/>
+
+
+                <ul>
+                   <li ng-repeat="ruoka in ruoat">
+                       <strong>ID:</strong> {{ruoka.id}} <strong>Annoksen nimi:</strong> {{ruoka.ruoka}} 
+                       <strong>Hinta:</strong> {{ruoka.hinta}}€ 
+                       <button class="nappi2" ng-click="poistoVarmistus(ruoka.id, 2)">Poista</button>
+                       <button class="nappi2" ng-click="muokkaaHintaa(ruoka.id, ruoka.hinta, ruoka.ruoka)">Muuta hintaa</button>
+                       <br/>
+                   </li>
+                </ul> 
+                
+                <h2>Salasanan vaihto</h2>
+                <p>Uusi salasana:<p> <input type="text" ng-model="uusisalasana">
+                <p>Salasanan vahvistus:<p> <input type="text" ng-model="uusisalasana2">
+                <button class="nappi1" ng-click="vaihdaSalasana(uusisalasana, uusisalasana2)">Vaihda ylläpitäjän salasanaa</button><br/>
+                
+                <h2>Käyttäjien kuukausiostokset</h2>
+                
+                <button class="nappi1" ng-click="haeKaikkiOstokset(kuukausi.id, vuosi)">Hae</button><br/>
+                <select class="adminselect" ng-model="kuukausi" ng-options=" kuukausi as kuukausi.kuukausi for kuukausi in kuukaudet"></select><br/>
+                <select class="adminselect" ng-model="vuosi" ng-options="vuosi as vuosi for vuosi in vuodet"></select><br/>
+                <div ng-show="kaikkien_ostoksien_summa > 0"><p><strong>Käyttäjien kuukausiostot yhteensä:</strong> {{kaikkien_ostoksien_summa}} €</p></div>
+                <ul>
+                    <li ng-repeat="rivi in kaikkiostokset">
+                        {{rivi.kayttajanimi}}: {{rivi.ostosumma}} €
+                    </li>
+                </ul>
+                <button class="nappi1" ng-show="kaikkiostokset.length > 0" ng-click="luoYhteenveto(kuukausi.kuukausi, vuosi)">Luo yhteenveto</button>
+                
+                
+             </div>
+            <div ng-hide="kirjauduttu">
+                <h2>Sisäänkirjautuminen</h2>
+                <input type="text" ng-model="tunnus"/><br/>
+                <input type="password" ng-model="salasana"/><br/>
+                <button class="nappi1" ng-click="haeTunnus(tunnus, salasana)">Kirjaudu sisään</button>
+             
+             </div>
+             
+             
+            </ion-content>
+        </ion-tab>   
+    </ion-tabs>
+    </body>
+</html>
