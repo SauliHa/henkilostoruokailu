@@ -1,0 +1,77 @@
+.ylapalkki{
+    background-color: #14ba14;
+    color: white;
+}
+
+.sisalto{
+    background-color: #b3e2b3;
+    color:graytext;
+}
+
+.sisalto h3{
+    color: graytext;
+}
+
+.otsikko{
+    color: white;
+}
+
+#kayttajat{
+    width: 100%;
+    clear: both;
+    padding-left: 15px;
+}
+
+#ostokset{
+    width: 100%;
+    clear: both;
+    padding-left: 15px;
+}
+
+.kayttaja{
+    float: left;
+    margin: 10px;
+}
+
+.nappi1{
+    width: 12em;
+    height: 4em;
+    border-radius: 10px;
+    background-color: #cdf7eb;
+    margin: 5px;
+}
+.nappi2{
+    width: 8em;
+    height: 3em;
+    border-radius: 10px;
+    background-color: #cdf7eb;
+    margin: 5px;
+}
+
+li{
+    margin: 5px;
+    font-size: 1.4em;
+}
+
+select{
+    margin: 5px;
+    width: 230px;
+    height: 60px;
+    font-size: 0.8em;
+}
+
+p{
+    font-size: 1.4em;
+    margin: 5px;
+}
+
+input[type="text"], input[type="password"]{
+    width: 20em;
+    height: 2em;
+    font-size: 24px;
+    border-radius: 10px;
+}
+
+.adminselect{
+    font-size: 1.4em; 
+}
