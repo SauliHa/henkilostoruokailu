@@ -10,7 +10,7 @@ Peruskäyttäjille ei toteutettu käyttäjätunnuksia.
 
 ## Kansion sisältö
 
-Kansio sisältää .apk tiedoston sovelluksen tarkastamiseen Android-laitteilla. Koodikansio sisältää HTML ja Javascript tiedostot projektin lähdekoodista.
+Kansio sisältää .apk tiedoston sovelluksen tarkastamiseen Android-laitteilla. Koodikansio sisältää muun HTML, CSS ja Javascript tiedostot projektin lähdekoodista.
 Koko projektia ei tämä Github kansio sisällä.
 
 ## Sovelluksen käyttö
@@ -23,7 +23,7 @@ Ylläpitäjän toiminnot on rajattu hyvin yksinkertaisen kirjautumismenetelmän 
 Oletuksena tunnus on "admin" ja salasana "mannikko".
 Ylläpitäjä pystyy lisäämään käyttäjiä järjestelmään kirjoittamalla käyttäjän nimen, sekä tarkastamaan listaa nykyisistä käyttäjistä ja poistamaan niitä.
 Ylläpitäjä voi myös lisätä ja poistaa ruokavalikoiman tuotteita sekä muokata niiden hintoja.
-Ylläpito-osiossa voi myös tarkastaa käyttäjien kuukausiostoja valitsemalla haluamansa kuukauden ja vuoden, joka näyttää yhteenvedon kunkin käyttäjän ostoksien yhteishinnoista. Sen lisäksi alalaitaan ilmeentyy "Luo yhteenveto" painike, joka luo uuden HTML-tiedoston puhelimen muistiin, joka sisältää kuukausiyhteenveto taulukkomuodossa esimerkiksi tulostamista varten.
+Ylläpito-osiossa voi myös tarkastaa käyttäjien kuukausiostoja valitsemalla haluamansa kuukauden ja vuoden, joka näyttää yhteenvedon kunkin käyttäjän ostoksien yhteishinnoista. Sen lisäksi alalaitaan ilmeentyy "Luo yhteenveto" painike, joka luo uuden HTML-tiedoston puhelimen muistiin, joka sisältää kuukausiyhteenvedon taulukkomuodossa esimerkiksi tulostamista varten.
 
 ### Käyttäjä
 
@@ -32,7 +32,7 @@ Avautuvassa ikkunassa käyttäjä voi valita ostoksensa listasta ja vahvistaa se
 Käyttäjäpuoli sisältää myös kaikille avoimen työkalun, jolla käyttäjät voivat katsoa käyttäjäkohtaisen yhteenvedon tietyn kuukauden aikana tehdyistä ostoksista.
 Työkalu mahdollistaa myös ostoksien poistamisen virheiden korjaamista varten.
 
-Tämä mahdollistaa sovelluksen väärinkäytön, mutta tehtävänantajan vaatimusten mukaan sovelluksen tuli olla avoin ja helppokäyttöinen, jonka käyttö perustuu luottamukseen ja rehellisyyteen, jonka vuoksi se toteutettiin ilman rajoitteita.
+Tämä mahdollistaa sovelluksen väärinkäytön, mutta tehtävänantajan vaatimusten mukaan sovelluksen tuli olla avoin ja helppokäyttöinen, jonka käyttö perustuu luottamukseen ja rehellisyyteen, jonka vuoksi se toteutettiin ilman rajoitteita tai käyttäjätunnuksia.
 
 
 
